@@ -51,7 +51,7 @@ const Result: React.FC<Props> = ({ route, requiredMats }) => {
                       </div>
                     </div>
                   ))}
-                {step.other}
+                <div className="results__other">{step.other}</div>
               </td>
             </tr>
           ))}

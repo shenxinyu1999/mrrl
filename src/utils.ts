@@ -6,6 +6,7 @@ import vendors, {
   Item,
   Vendor
 } from "./data/vendor";
+import { setupMaster } from "cluster";
 
 interface Materials {
   items: { itemId: number; quantity: number }[];
@@ -18,7 +19,7 @@ interface Inventory {
 
 export interface RouteStep {
   vendor?: string;
-  items?: { itemId: number; quantity: number }[];
+  items: { itemId: number; quantity: number }[];
   quantity?: number;
   other?: string;
 }
@@ -100,22 +101,10 @@ export function findRoute(materials: Materials): RouteStep[] {
 
     let lastResult = result[result.length - 1];
 
-    if (
-      lastVendor == vendor &&
-      result.length > 0 &&
-      lastResult != null &&
-      lastResult.items != null
-    ) {
-      lastResult.items.push({
-        itemId: nextToBuy.itemId,
-        quantity: nextToBuy.quantity
-      });
-    } else {
-      result.push({
-        vendor: vendor.name,
-        items: [{ itemId: nextToBuy.itemId, quantity: nextToBuy.quantity }]
-      });
-    }
+    result.push({
+      vendor: vendor.name,
+      items: [{ itemId: nextToBuy.itemId, quantity: nextToBuy.quantity }]
+    });
 
     lastVendor = vendor;
 
@@ -134,7 +123,79 @@ export function findRoute(materials: Materials): RouteStep[] {
     }
   }
 
+  addCleanSockStep(result);
+  mergeSteps(result);
   return result;
+}
+
+function mergeSteps(route: RouteStep[]) {
+  for (let i = 0; i < route.length - 1; i++) {
+    let step = route[i];
+    let nextStep = route[i + 1];
+
+    if (step.vendor == nextStep.vendor) {
+      step.items = step.items.concat(nextStep.items);
+      if (nextStep.other != null) {
+        step.other = nextStep.other;
+      }
+
+      route.splice(i + 1, 1);
+    }
+  }
+}
+
+function addCleanSockStep(route: RouteStep[]) {
+  let hasDirtySocks = false;
+  let hasCleanedSocks = false;
+
+  for (let i = 0; i < route.length; i++) {
+    let step = route[i];
+
+    if (step.items != null) {
+      if (step.items.find(i => i.itemId == KnownItemIds.DirtyMurlocSock)) {
+        hasDirtySocks = true;
+      }
+
+      // If we have dirt socks and at Flrgrrl, clean them.
+      if (hasDirtySocks && step.vendor != null && step.vendor == "Flrgrrl") {
+        route.splice(i, 0, {
+          vendor: "Flrgrrl",
+          items: [],
+          other: "Clean the dirty socks."
+        });
+        hasDirtySocks = false;
+        hasCleanedSocks = true;
+        break;
+      }
+
+      // If we have dirty socks and we need clean socks to buy the next item, must clean them.
+      if (
+        hasDirtySocks &&
+        step.items.find(i => {
+          let item = itemsById[i.itemId];
+          if (item.cost.type == CostType.Items) {
+            return (
+              item.cost.items.findIndex(
+                ci => ci.itemId == KnownItemIds.DirtyMurlocSock
+              ) >= 0
+            );
+          }
+
+          return false;
+        })
+      ) {
+        route.splice(i, 0, {
+          vendor: "Flrgrrl",
+          items: [],
+          other: "Clean the dirty socks."
+        });
+
+        hasDirtySocks = false;
+        hasCleanedSocks = true;
+        break;
+      }
+    }
+  }
 }
 
 function hasCostRequirements(

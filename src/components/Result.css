@@ -27,3 +27,12 @@
 .results__item {
   display: flex;
 }
+
+.results__other {
+  font-size: 32px;
+  padding-left: 74px;
+}
+
+.results__steps tr:nth-child(even) {
+  background-color: #333333;
+}

@@ -10,3 +10,7 @@
 .suggestions__results {
   cursor: pointer;
 }
+
+.suggestions__item--selected {
+  background-color: #333333;
+}

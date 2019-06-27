@@ -7,7 +7,6 @@ export enum Rarity {
 
 export enum CostType {
   Items,
-  Item,
   Gold
 }
 
@@ -391,7 +390,7 @@ export let mrrl: Vendor = {
 };
 
 let murloco: Vendor = {
-  name: "Mrrl",
+  name: "Murloco",
   instruction:
     "Found at 46.22 32.57 in Nazjatar. Kill the 2 Naga guards to release Murloco.",
   inventory: [

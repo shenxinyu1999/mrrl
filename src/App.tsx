@@ -5,7 +5,6 @@ import "./simple-grid.css";
 
 import { itemsById, CostType, items } from "./data/vendor";
 import Want from "./components/Want";
-import Item from "./components/Item";
 import { findRoute, RouteStep } from "./utils";
 import Suggestions from "./components/Suggestions";
 import Result from "./components/Result";
@@ -19,6 +18,7 @@ interface State {
   route: RouteStep[];
   requiredMats: Materials;
   includeSecretShop: boolean;
+  selectedItems: { [itemId: number]: any };
 }
 
 export interface Materials {
@@ -44,7 +44,8 @@ const App: React.FC = () => {
     wantedItems: [],
     route: [],
     requiredMats: { items: [], gold: 0 },
-    includeSecretShop: true
+    includeSecretShop: true,
+    selectedItems: {}
   });
 
   const onQuantityChange = (itemId: number, quantity: number) => {
@@ -96,16 +97,62 @@ const App: React.FC = () => {
     return combinedMats;
   };
 
-  const onItemSelected = (itemId: number) => {
-    let item = itemsById[itemId];
+  const onItemSelected = (itemId: number, shiftDown: boolean) => {
+    var newSelectedItems = { ...state.selectedItems };
+    if (shiftDown) {
+      newSelectedItems[itemId] = true;
+      // Clear text selection.
+      let selection = document.getSelection();
+      if (selection != null) {
+        selection.removeAllRanges();
+      }
+    } else {
+      newSelectedItems = { [itemId]: true };
+    }
 
     let wantedItems: WantedItem[] = [];
 
-    if (item.cost.type == CostType.Items) {
-      item.cost.items.forEach(({ itemId, quantity }) => {
-        wantedItems.push({ itemId, quantity: quantity });
-      });
+    for (let selectedItemId in newSelectedItems) {
+      let item = itemsById[selectedItemId];
+
+      if (item.cost.type == CostType.Items) {
+        item.cost.items.forEach(({ itemId, quantity }) => {
+          wantedItems.push({ itemId, quantity: quantity });
+        });
+      }
     }
+
+    // Merge identical wanted items
+
+    wantedItems = wantedItems.reduce((acc: any, val) => {
+      var existingWantedItem = acc.find((wi: any) => wi.itemId == val.itemId);
+
+      if (existingWantedItem != null) {
+        existingWantedItem.quantity =
+          existingWantedItem.quantity + val.quantity;
+      } else {
+        acc.push({ itemId: val.itemId, quantity: val.quantity });
+      }
+
+      return acc;
+    }, []);
+
+    var newSelectedItems = { ...state.selectedItems };
+    if (shiftDown) {
+      newSelectedItems[itemId] = true;
+      // Clear text selection.
+      let selection = document.getSelection();
+      if (selection != null) {
+        selection.removeAllRanges();
+      }
+    } else {
+      newSelectedItems = { [itemId]: true };
+    }
+
+    setState(prevState => ({
+      ...prevState,
+      selectedItems: newSelectedItems
+    }));
 
     calculateNewState(wantedItems);
   };
@@ -125,6 +172,7 @@ const App: React.FC = () => {
       <Suggestions
         onItemSelected={onItemSelected}
         includeSecretShop={state.includeSecretShop}
+        selectedItems={state.selectedItems}
       />
       <Want
         onQuantityChange={onQuantityChange}

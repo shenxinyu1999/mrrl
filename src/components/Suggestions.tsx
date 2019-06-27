@@ -6,13 +6,15 @@ import Item from "./Item";
 import "./Suggestions.css";
 
 interface Props {
-  onItemSelected: (itemId: number) => void;
+  onItemSelected: (itemId: number, shiftPressed: boolean) => void;
   includeSecretShop: boolean;
+  selectedItems: { [itemId: number]: any };
 }
 
 const Suggestions: React.FC<Props> = ({
   includeSecretShop,
-  onItemSelected
+  onItemSelected,
+  selectedItems
 }) => {
   return (
     <div className="suggestions__container">
@@ -27,10 +29,15 @@ const Suggestions: React.FC<Props> = ({
         {mrrl.inventory
           .filter(inv => !inv.secret || includeSecretShop)
           .map(inv => (
-            <div className="col-4">
+            <div
+              className={
+                "col-4 suggestions__item " +
+                (selectedItems[inv.itemId] ? "suggestions__item--selected" : "")
+              }
+            >
               <Item
                 itemId={inv.itemId}
-                onClick={() => onItemSelected(inv.itemId)}
+                onClick={event => onItemSelected(inv.itemId, !!event.shiftKey)}
               />
             </div>
           ))}
