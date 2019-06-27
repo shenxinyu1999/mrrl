@@ -14,7 +14,7 @@ const Item: React.FC<Props> = ({ itemId, onClick }) => {
     <div className={`item item--${itemsById[itemId].rarity}`} onClick={onClick}>
       <img
         className="item__image"
-        src={process.env.PUBLIC_URL + "items/" + itemId + ".jpg"}
+        src={process.env.PUBLIC_URL + "/items/" + itemId + ".jpg"}
       />
       <span className="item__name">{itemsById[itemId].name}</span>
     </div>
