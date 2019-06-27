@@ -1,0 +1,11 @@
+.want__item {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 250px;
+}
+
+.want__input {
+  height: 56px;
+  width: 56px;
+  font-size: 32px;
+}

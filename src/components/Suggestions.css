@@ -1,0 +1,12 @@
+.suggestions__filter {
+  padding: 15px 0;
+}
+
+.suggestions__results {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.suggestions__results {
+  cursor: pointer;
+}

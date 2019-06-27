@@ -1,0 +1,29 @@
+.results__steps {
+  border: 1px solid black;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.results__steps th,
+.results__steps td {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.results__vendor {
+  text-align: center;
+}
+
+.results__quantity {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  font-size: 32px;
+  text-align: right;
+  padding: 5px;
+  line-height: 64px;
+}
+
+.results__item {
+  display: flex;
+}
