@@ -1,9 +1,8 @@
 import React, { useState, ChangeEvent } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import "./simple-grid.css";
 
-import { itemsById, CostType, items } from "./data/vendor";
+import { itemsById, CostType } from "./data/vendor";
 import Want from "./components/Want";
 import { findRoute, RouteStep } from "./utils";
 import Suggestions from "./components/Suggestions";
@@ -30,7 +29,7 @@ const mergeMaterials = (toMergeInto: Materials, toMergeFrom: Materials) => {
   toMergeInto.gold = toMergeInto.gold + toMergeFrom.gold;
 
   toMergeFrom.items.forEach(item => {
-    let foundItem = toMergeInto.items.find(i => i.itemId == item.itemId);
+    let foundItem = toMergeInto.items.find(i => i.itemId === item.itemId);
     if (foundItem) {
       foundItem.quantity = foundItem.quantity + item.quantity;
     } else {
@@ -49,7 +48,7 @@ const App: React.FC = () => {
   });
 
   const onQuantityChange = (itemId: number, quantity: number) => {
-    const newWantedItems = state.wantedItems.filter(wi => wi.itemId != itemId);
+    const newWantedItems = state.wantedItems.filter(wi => wi.itemId !== itemId);
     if (quantity > 0) {
       newWantedItems.push({ itemId, quantity });
     }
@@ -66,16 +65,16 @@ const App: React.FC = () => {
 
   const getCost = (itemId: number, quantity: number): Materials => {
     // Add ourselves.
-    var result = { gold: 0, items: [{ itemId, quantity }] };
+    let result = { gold: 0, items: [{ itemId, quantity }] };
 
     const item = itemsById[itemId];
 
-    if (item.cost.type == CostType.Gold) {
+    if (item.cost.type === CostType.Gold) {
       mergeMaterials(result, {
         gold: quantity * item.cost.quantity,
         items: []
       });
-    } else if (item.cost.type == CostType.Items) {
+    } else if (item.cost.type === CostType.Items) {
       for (let i = 0; i < item.cost.items.length; i++) {
         const innerItem = item.cost.items[i];
         const cost = getCost(innerItem.itemId, quantity * innerItem.quantity);
@@ -98,7 +97,7 @@ const App: React.FC = () => {
   };
 
   const onItemSelected = (itemId: number, shiftDown: boolean) => {
-    var newSelectedItems = { ...state.selectedItems };
+    let newSelectedItems = { ...state.selectedItems };
     if (shiftDown) {
       newSelectedItems[itemId] = true;
       // Clear text selection.
@@ -115,7 +114,7 @@ const App: React.FC = () => {
     for (let selectedItemId in newSelectedItems) {
       let item = itemsById[selectedItemId];
 
-      if (item.cost.type == CostType.Items) {
+      if (item.cost.type === CostType.Items) {
         item.cost.items.forEach(({ itemId, quantity }) => {
           wantedItems.push({ itemId, quantity: quantity });
         });
@@ -125,7 +124,7 @@ const App: React.FC = () => {
     // Merge identical wanted items
 
     wantedItems = wantedItems.reduce((acc: any, val) => {
-      var existingWantedItem = acc.find((wi: any) => wi.itemId == val.itemId);
+      let existingWantedItem = acc.find((wi: any) => wi.itemId === val.itemId);
 
       if (existingWantedItem != null) {
         existingWantedItem.quantity =
@@ -136,18 +135,6 @@ const App: React.FC = () => {
 
       return acc;
     }, []);
-
-    var newSelectedItems = { ...state.selectedItems };
-    if (shiftDown) {
-      newSelectedItems[itemId] = true;
-      // Clear text selection.
-      let selection = document.getSelection();
-      if (selection != null) {
-        selection.removeAllRanges();
-      }
-    } else {
-      newSelectedItems = { [itemId]: true };
-    }
 
     setState(prevState => ({
       ...prevState,

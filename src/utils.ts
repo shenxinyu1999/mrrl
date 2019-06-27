@@ -1,4 +1,4 @@
-import vendors, {
+import {
   KnownItemIds,
   itemsById,
   CostType,
@@ -6,7 +6,6 @@ import vendors, {
   Item,
   Vendor
 } from "./data/vendor";
-import { setupMaster } from "cluster";
 
 interface Materials {
   items: { itemId: number; quantity: number }[];
@@ -25,7 +24,7 @@ export interface RouteStep {
 }
 
 export function findRoute(materials: Materials): RouteStep[] {
-  if (materials.items.length == 0) {
+  if (materials.items.length === 0) {
     return [];
   }
 
@@ -35,13 +34,13 @@ export function findRoute(materials: Materials): RouteStep[] {
   let inventory: Inventory = {};
   // Start with Unidentified Mass for now. Simple way to make sure we have dirty socks to clean when go see the Murloc in the water.
   const unidentifiedMass = materials.items.find(
-    item => item.itemId == KnownItemIds.UnidentifiedMass
+    item => item.itemId === KnownItemIds.UnidentifiedMass
   );
 
   if (unidentifiedMass != null) {
     materials.items = [
       unidentifiedMass,
-      ...materials.items.filter(i => i != unidentifiedMass)
+      ...materials.items.filter(i => i !== unidentifiedMass)
     ];
   }
 
@@ -54,7 +53,7 @@ export function findRoute(materials: Materials): RouteStep[] {
     }
 
     // Remove mats from inventory
-    if (item.cost.type == CostType.Items) {
+    if (item.cost.type === CostType.Items) {
       for (let i = 0; i < item.cost.items.length; i++) {
         let costItem = item.cost.items[i];
         let existingMatQuantiy = inventory[costItem.itemId];
@@ -77,7 +76,7 @@ export function findRoute(materials: Materials): RouteStep[] {
   while (materials.items.length > 0) {
     let indexToBuy = materials.items.findIndex(
       item =>
-        vendorByItemId[item.itemId] == lastVendor &&
+        vendorByItemId[item.itemId] === lastVendor &&
         hasCostRequirements(inventory, item.itemId, item.quantity)
     );
     if (indexToBuy < 0) {
@@ -92,14 +91,12 @@ export function findRoute(materials: Materials): RouteStep[] {
     let nextToBuy = materials.items[indexToBuy];
     let nextToBuyItem = itemsById[nextToBuy.itemId];
 
-    var vendor = vendorByItemId[nextToBuy.itemId];
+    let vendor = vendorByItemId[nextToBuy.itemId];
 
-    console.log(`Want to buy ${nextToBuy.quantity}x${nextToBuy.itemId}`);
-    console.log(`It is sold by: ${vendor.name}`);
+    //console.log(`Want to buy ${nextToBuy.quantity}x${nextToBuy.itemId}`);
+    //console.log(`It is sold by: ${vendor.name}`);
 
     buyItem(nextToBuyItem, nextToBuy.quantity);
-
-    let lastResult = result[result.length - 1];
 
     result.push({
       vendor: vendor.name,
@@ -108,7 +105,7 @@ export function findRoute(materials: Materials): RouteStep[] {
 
     lastVendor = vendor;
 
-    // if (nextToBuy.itemId == KnownItemIds.DirtyMurlocSock) {
+    // if (nextToBuy.itemId === KnownItemIds.DirtyMurlocSock) {
     //   result.push({
     //     other: "Clean the dirty socks."
     //   });
@@ -129,42 +126,62 @@ export function findRoute(materials: Materials): RouteStep[] {
 }
 
 function mergeSteps(route: RouteStep[]) {
+  if (route.length <= 1) {
+    return;
+  }
+
   for (let i = 0; i < route.length - 1; i++) {
     let step = route[i];
     let nextStep = route[i + 1];
 
-    if (step.vendor == nextStep.vendor) {
-      step.items = step.items.concat(nextStep.items);
-      if (nextStep.other != null) {
-        step.other = nextStep.other;
+    let stepCount = 0;
+
+    while (true) {
+      if (step.vendor === nextStep.vendor) {
+        step.items = step.items.concat(nextStep.items);
+        if (nextStep.other != null) {
+          step.other = nextStep.other;
+        }
+
+        route.splice(i + 1, 1);
+
+        if (i + 1 < route.length) {
+          nextStep = route[i + 1];
+        } else {
+          break;
+        }
+      } else {
+        break;
       }
 
-      route.splice(i + 1, 1);
+      stepCount++;
+
+      if (stepCount > 50) {
+        throw new Error("Could not merge steps");
+      }
     }
   }
 }
 
 function addCleanSockStep(route: RouteStep[]) {
   let hasDirtySocks = false;
-  let hasCleanedSocks = false;
 
   for (let i = 0; i < route.length; i++) {
     let step = route[i];
 
     if (step.items != null) {
-      if (step.items.find(i => i.itemId == KnownItemIds.DirtyMurlocSock)) {
+      if (step.items.find(i => i.itemId === KnownItemIds.DirtyMurlocSock)) {
         hasDirtySocks = true;
       }
 
       // If we have dirt socks and at Flrgrrl, clean them.
-      if (hasDirtySocks && step.vendor != null && step.vendor == "Flrgrrl") {
+      if (hasDirtySocks && step.vendor != null && step.vendor === "Flrgrrl") {
         route.splice(i, 0, {
           vendor: "Flrgrrl",
           items: [],
           other: "Clean the dirty socks."
         });
         hasDirtySocks = false;
-        hasCleanedSocks = true;
         break;
       }
 
@@ -173,10 +190,10 @@ function addCleanSockStep(route: RouteStep[]) {
         hasDirtySocks &&
         step.items.find(i => {
           let item = itemsById[i.itemId];
-          if (item.cost.type == CostType.Items) {
+          if (item.cost.type === CostType.Items) {
             return (
               item.cost.items.findIndex(
-                ci => ci.itemId == KnownItemIds.DirtyMurlocSock
+                ci => ci.itemId === KnownItemIds.DirtyMurlocSock
               ) >= 0
             );
           }
@@ -191,7 +208,6 @@ function addCleanSockStep(route: RouteStep[]) {
         });
 
         hasDirtySocks = false;
-        hasCleanedSocks = true;
         break;
       }
     }
@@ -205,9 +221,9 @@ function hasCostRequirements(
 ) {
   let item = itemsById[itemId];
 
-  if (item.cost.type == CostType.Gold) {
+  if (item.cost.type === CostType.Gold) {
     return true; // Always have the gold!
-  } else if (item.cost.type == CostType.Items) {
+  } else if (item.cost.type === CostType.Items) {
     // Can probably change this to something that has early return but whatever
     return item.cost.items.reduce((acc, val) => {
       let quantityInventory = inventory[val.itemId];

@@ -30,6 +30,7 @@ const Suggestions: React.FC<Props> = ({
           .filter(inv => !inv.secret || includeSecretShop)
           .map(inv => (
             <div
+              key={inv.itemId}
               className={
                 "col-4 suggestions__item " +
                 (selectedItems[inv.itemId] ? "suggestions__item--selected" : "")

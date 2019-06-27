@@ -409,16 +409,13 @@ let murloco: Vendor = {
 let vendors: Vendor[] = [hurlgrl, grrmrlg, mrrglrlr, flrgrrl, mrrl, murloco];
 
 export let items = vendors.flatMap(v => v.inventory);
-export let itemsById = items.reduce(
-  (map, item) => {
-    map[item.itemId] = item;
-    return map;
-  },
-  <{ [id: number]: Item }>{}
-);
+export let itemsById = items.reduce((map: any, item) => {
+  map[item.itemId] = item;
+  return map;
+}, {});
 
 function calculateItemIdToVendorMap(vendors: Vendor[]) {
-  var result: { [itemId: number]: Vendor } = {};
+  let result: { [itemId: number]: Vendor } = {};
 
   for (let i = 0; i < vendors.length; i++) {
     let vendor = vendors[i];

@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { ChangeEvent } from "react";
 
 import { items, Rarity } from "../data/vendor";
 import Item from "./Item";
@@ -7,9 +7,11 @@ import { WantedItem } from "../App";
 import "./Want.css";
 
 let offeredItems = items
-  .filter(i => !i.mrrl && (i.rarity == Rarity.Rare || i.rarity == Rarity.Epic))
+  .filter(
+    i => !i.mrrl && (i.rarity === Rarity.Rare || i.rarity === Rarity.Epic)
+  )
   .sort((a, b) => {
-    if (a.rarity == b.rarity) {
+    if (a.rarity === b.rarity) {
       return a.name.localeCompare(b.name);
     }
 
@@ -57,7 +59,10 @@ const Want: React.FC<Props> = ({
         {offeredItems
           .filter(item => !item.secret || includeSecretShop)
           .map(item => (
-            <div className={`col-6 want__item want__item--${item.rarity}`}>
+            <div
+              key={item.itemId}
+              className={`col-6 want__item want__item--${item.rarity}`}
+            >
               <input
                 type="number"
                 className="want__input"
