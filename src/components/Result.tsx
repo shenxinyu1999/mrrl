@@ -32,7 +32,7 @@ const Result: React.FC<Props> = ({ route, requiredMats }) => {
                   <img
                     src={
                       process.env.PUBLIC_URL +
-                      "images/npc/" +
+                      "/images/npc/" +
                       step.vendor +
                       ".jpg"
                     }
