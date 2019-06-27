@@ -1,0 +1,50 @@
+@import "../_variables";
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px;
+}
+
+.name {
+  padding-left: 8px;
+}
+
+.image {
+  border: $item-icon-border-size solid $rarity-normal-color;
+  border-radius: 2px;
+  height: $item-icon-size;
+  width: $item-icon-size;
+}
+
+/* Normal */
+.item--1 {
+  color: $rarity-normal-color;
+}
+
+/* Uncommon */
+.item--2 {
+  color: $rarity-uncommon-color;
+
+  .image {
+    border-color: $rarity-uncommon-color;
+  }
+}
+
+/* Rare */
+.item--3 {
+  color: $rarity-rare-color;
+
+  .image {
+    border-color: $rarity-rare-color;
+  }
+}
+
+/* Epic */
+.item--4 {
+  color: $rarity-epic-color;
+
+  .image {
+    border-color: $rarity-epic-color;
+  }
+}

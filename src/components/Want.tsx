@@ -1,23 +1,11 @@
 import React, { ChangeEvent } from "react";
 
-import { items, Rarity } from "../data/vendor";
 import Item from "./Item";
-import { WantedItem } from "../App";
 
-import "./Want.css";
+import "./Want.scss";
+import { getMaterialsInput, WantedItem } from "../data";
 
-let offeredItems = items
-  .filter(
-    i => !i.mrrl && (i.rarity === Rarity.Rare || i.rarity === Rarity.Epic)
-  )
-  .sort((a, b) => {
-    if (a.rarity === b.rarity) {
-      return a.name.localeCompare(b.name);
-    }
-
-    // Inverted to get Epic as first (descending).
-    return b.rarity - a.rarity;
-  });
+let offeredItems = getMaterialsInput();
 
 interface Props {
   wantedItems: WantedItem[];
@@ -30,11 +18,6 @@ const Want: React.FC<Props> = ({
   wantedItems,
   includeSecretShop
 }) => {
-  let wantedItemMap = wantedItems.reduce((map: any, val) => {
-    map[val.itemId] = val.quantity;
-    return map;
-  }, {});
-
   const onWantChange = (event: ChangeEvent<HTMLInputElement>) => {
     const target = event.target;
     const itemId = +target.name;
@@ -44,7 +27,7 @@ const Want: React.FC<Props> = ({
   };
 
   const getValue = (itemId: number) => {
-    let quantity = wantedItemMap[itemId];
+    let quantity = wantedItems.find(wi => wi.itemId === itemId);
     if (quantity == null) {
       return "";
     }

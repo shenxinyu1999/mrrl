@@ -1,11 +1,12 @@
 import {
   KnownItemIds,
-  itemsById,
   CostType,
-  vendorByItemId,
   Item,
-  Vendor
-} from "./data/vendor";
+  Vendor,
+  getVendorOfItem,
+  getItem
+} from "./data";
+import { flrgrrl } from "./data/vendor";
 
 interface Materials {
   items: { itemId: number; quantity: number }[];
@@ -17,7 +18,7 @@ interface Inventory {
 }
 
 export interface RouteStep {
-  vendor?: string;
+  vendor: Vendor;
   items: { itemId: number; quantity: number }[];
   quantity?: number;
   other?: string;
@@ -76,7 +77,7 @@ export function findRoute(materials: Materials): RouteStep[] {
   while (materials.items.length > 0) {
     let indexToBuy = materials.items.findIndex(
       item =>
-        vendorByItemId[item.itemId] === lastVendor &&
+        getVendorOfItem(item.itemId) === lastVendor &&
         hasCostRequirements(inventory, item.itemId, item.quantity)
     );
     if (indexToBuy < 0) {
@@ -89,9 +90,9 @@ export function findRoute(materials: Materials): RouteStep[] {
     }
 
     let nextToBuy = materials.items[indexToBuy];
-    let nextToBuyItem = itemsById[nextToBuy.itemId];
+    let nextToBuyItem = getItem(nextToBuy.itemId);
 
-    let vendor = vendorByItemId[nextToBuy.itemId];
+    let vendor = getVendorOfItem(nextToBuy.itemId);
 
     //console.log(`Want to buy ${nextToBuy.quantity}x${nextToBuy.itemId}`);
     //console.log(`It is sold by: ${vendor.name}`);
@@ -99,7 +100,7 @@ export function findRoute(materials: Materials): RouteStep[] {
     buyItem(nextToBuyItem, nextToBuy.quantity);
 
     result.push({
-      vendor: vendor.name,
+      vendor: vendor,
       items: [{ itemId: nextToBuy.itemId, quantity: nextToBuy.quantity }]
     });
 
@@ -175,9 +176,9 @@ function addCleanSockStep(route: RouteStep[]) {
       }
 
       // If we have dirt socks and at Flrgrrl, clean them.
-      if (hasDirtySocks && step.vendor != null && step.vendor === "Flrgrrl") {
+      if (hasDirtySocks && step.vendor.name === "Flrgrrl") {
         route.splice(i, 0, {
-          vendor: "Flrgrrl",
+          vendor: flrgrrl,
           items: [],
           other: "Clean the dirty socks."
         });
@@ -189,7 +190,7 @@ function addCleanSockStep(route: RouteStep[]) {
       if (
         hasDirtySocks &&
         step.items.find(i => {
-          let item = itemsById[i.itemId];
+          let item = getItem(i.itemId);
           if (item.cost.type === CostType.Items) {
             return (
               item.cost.items.findIndex(
@@ -202,7 +203,7 @@ function addCleanSockStep(route: RouteStep[]) {
         })
       ) {
         route.splice(i, 0, {
-          vendor: "Flrgrrl",
+          vendor: flrgrrl,
           items: [],
           other: "Clean the dirty socks."
         });
@@ -219,7 +220,7 @@ function hasCostRequirements(
   itemId: number,
   quantity: number
 ) {
-  let item = itemsById[itemId];
+  let item = getItem(itemId);
 
   if (item.cost.type === CostType.Gold) {
     return true; // Always have the gold!

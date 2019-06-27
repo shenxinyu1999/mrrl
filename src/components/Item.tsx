@@ -1,8 +1,6 @@
 import React from "react";
-
-import { itemsById } from "../data/vendor";
-
-import "./Item.css";
+import styles from "./Item.module.scss";
+import { getItem } from "../data";
 
 interface Props {
   itemId: number;
@@ -10,16 +8,27 @@ interface Props {
 }
 
 const Item: React.FC<Props> = ({ itemId, onClick }) => {
+  let item = getItem(itemId);
+
   return (
-    <div className={`item item--${itemsById[itemId].rarity}`} onClick={onClick}>
-      <img
-        className="item__image"
-        src={process.env.PUBLIC_URL + "/items/" + itemId + ".jpg"}
-        alt={itemsById[itemId].name}
-      />
-      <span className="item__name">{itemsById[itemId].name}</span>
+    <div
+      className={`${styles.item} ${getRarityClassName(item)}`}
+      onClick={onClick}
+    >
+      <img className={styles.image} src={getImageUrl(itemId)} alt={item.name} />
+      <span className={styles.name}>{item.name}</span>
     </div>
   );
+};
+
+const getRarityClassName = item => {
+  let key = "item--" + item.rarity;
+
+  return styles[key];
+};
+
+const getImageUrl = itemId => {
+  return process.env.PUBLIC_URL + "/items/" + itemId + ".jpg";
 };
 
 export default Item;

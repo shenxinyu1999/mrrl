@@ -1,42 +1,27 @@
 import React, { useState, ChangeEvent } from "react";
-import "./App.css";
+import "./App.scss";
 import "./simple-grid.css";
 
-import { itemsById, CostType } from "./data/vendor";
 import Want from "./components/Want";
 import { findRoute, RouteStep } from "./utils";
 import Suggestions from "./components/Suggestions";
 import Result from "./components/Result";
+import {
+  CostType,
+  getItem,
+  calculateRequiredMats,
+  WantedItem,
+  Materials
+} from "./data";
 
-export interface WantedItem {
-  itemId: number;
-  quantity: number;
-}
 interface State {
   wantedItems: WantedItem[];
   route: RouteStep[];
   requiredMats: Materials;
   includeSecretShop: boolean;
+  includeVendorPictures: boolean;
   selectedItems: { [itemId: number]: any };
 }
-
-export interface Materials {
-  items: { itemId: number; quantity: number }[];
-  gold: number;
-}
-
-const mergeMaterials = (toMergeInto: Materials, toMergeFrom: Materials) => {
-  toMergeInto.gold = toMergeInto.gold + toMergeFrom.gold;
-
-  toMergeFrom.items.forEach(item => {
-    let foundItem = toMergeInto.items.find(i => i.itemId === item.itemId);
-    if (foundItem) {
-      foundItem.quantity = foundItem.quantity + item.quantity;
-    } else {
-      toMergeInto.items.push(item);
-    }
-  });
-};
 
 const App: React.FC = () => {
   const [state, setState] = useState<State>({
@@ -44,6 +29,7 @@ const App: React.FC = () => {
     route: [],
     requiredMats: { items: [], gold: 0 },
     includeSecretShop: true,
+    includeVendorPictures: true,
     selectedItems: {}
   });
 
@@ -63,39 +49,6 @@ const App: React.FC = () => {
     setState(prevState => ({ ...prevState, wantedItems, route, requiredMats }));
   };
 
-  const getCost = (itemId: number, quantity: number): Materials => {
-    // Add ourselves.
-    let result = { gold: 0, items: [{ itemId, quantity }] };
-
-    const item = itemsById[itemId];
-
-    if (item.cost.type === CostType.Gold) {
-      mergeMaterials(result, {
-        gold: quantity * item.cost.quantity,
-        items: []
-      });
-    } else if (item.cost.type === CostType.Items) {
-      for (let i = 0; i < item.cost.items.length; i++) {
-        const innerItem = item.cost.items[i];
-        const cost = getCost(innerItem.itemId, quantity * innerItem.quantity);
-
-        mergeMaterials(result, cost);
-      }
-    }
-
-    return result;
-  };
-
-  const calculateRequiredMats = (wantedItems: WantedItem[]) => {
-    let combinedMats: Materials = { gold: 0, items: [] };
-
-    wantedItems.forEach(item => {
-      mergeMaterials(combinedMats, getCost(item.itemId, item.quantity));
-    });
-
-    return combinedMats;
-  };
-
   const onItemSelected = (itemId: number, shiftDown: boolean) => {
     let newSelectedItems = { ...state.selectedItems };
     if (shiftDown) {
@@ -112,7 +65,7 @@ const App: React.FC = () => {
     let wantedItems: WantedItem[] = [];
 
     for (let selectedItemId in newSelectedItems) {
-      let item = itemsById[selectedItemId];
+      let item = getItem(+selectedItemId);
 
       if (item.cost.type === CostType.Items) {
         item.cost.items.forEach(({ itemId, quantity }) => {
@@ -153,9 +106,20 @@ const App: React.FC = () => {
     }));
   };
 
+  const onIncludeVendorPicturesChange = (
+    event: ChangeEvent<HTMLInputElement>
+  ) => {
+    const checked = event.target.checked;
+
+    setState(prevState => ({
+      ...prevState,
+      includeVendorPictures: checked
+    }));
+  };
+
   return (
     <div className="App">
-      <h1>Mrrl!</h1>
+      <h1>Mrrl! (beta)</h1>
       <Suggestions
         onItemSelected={onItemSelected}
         includeSecretShop={state.includeSecretShop}
@@ -174,7 +138,20 @@ const App: React.FC = () => {
         />
         Include secret shop (cloak required)
       </label>
-      <Result route={state.route} requiredMats={state.requiredMats} />
+      <br />
+      <label>
+        <input
+          type="checkbox"
+          checked={state.includeVendorPictures}
+          onChange={onIncludeVendorPicturesChange}
+        />
+        Include vendor pictures
+      </label>
+      <Result
+        route={state.route}
+        requiredMats={state.requiredMats}
+        includeVendorPictures={state.includeVendorPictures}
+      />
     </div>
   );
 };

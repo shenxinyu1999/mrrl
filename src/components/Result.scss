@@ -1,3 +1,5 @@
+@import "../variables";
+
 .results__steps {
   border: 1px solid black;
   width: 100%;
@@ -12,16 +14,17 @@
 
 .results__vendor {
   text-align: center;
+  max-width: 256px;
 }
 
 .results__quantity {
   display: inline-block;
-  width: 64px;
-  height: 64px;
-  font-size: 32px;
+  width: $step-item-quantity-size * 2;
+  height: $step-item-quantity-size;
+  font-size: $step-item-quantity-font-size;
   text-align: right;
   padding: 5px;
-  line-height: 64px;
+  line-height: $step-item-quantity-size;
 }
 
 .results__item {

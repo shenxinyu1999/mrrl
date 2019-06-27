@@ -1,16 +1,25 @@
 import React from "react";
-import { Materials } from "../App";
 import { RouteStep } from "../utils";
 
-import "./Result.css";
+import "./Result.scss";
 import Item from "./Item";
+import { Materials } from "../data";
 
 interface Props {
   route: RouteStep[];
   requiredMats: Materials;
+  includeVendorPictures: boolean;
 }
 
-const Result: React.FC<Props> = ({ route, requiredMats }) => {
+const Result: React.FC<Props> = ({
+  route,
+  requiredMats,
+  includeVendorPictures
+}) => {
+  if (route.length == 0) {
+    return null;
+  }
+
   return (
     <div className="results__container">
       <h2>Results</h2>
@@ -27,26 +36,31 @@ const Result: React.FC<Props> = ({ route, requiredMats }) => {
           </thead>
           <tbody>
             {route.map((step, index) => (
-              <tr>
+              <tr key={index}>
                 <td>{index + 1}</td>
                 <td className="results__vendor">
-                  <div>{step.vendor}</div>
-                  <div>
-                    <img
-                      src={
-                        process.env.PUBLIC_URL +
-                        "/images/npc/" +
-                        step.vendor +
-                        ".jpg"
-                      }
-                      alt="step.vendor"
-                    />
-                  </div>
+                  <div>{step.vendor.name}</div>
+                  {includeVendorPictures && (
+                    <div>
+                      <a href={step.vendor.url}>
+                        <img
+                          src={
+                            process.env.PUBLIC_URL +
+                            "/images/npc/" +
+                            step.vendor.name +
+                            ".jpg"
+                          }
+                          alt={step.vendor.name}
+                        />
+                      </a>
+                    </div>
+                  )}
+                  <div>{step.vendor.instruction}</div>
                 </td>
                 <td>
                   {step.items &&
-                    step.items.map(item => (
-                      <div className="results__item">
+                    step.items.map((item, index) => (
+                      <div key={index} className="results__item">
                         <span className="col-3 results__quantity">
                           {item.quantity}
                         </span>
