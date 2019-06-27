@@ -35,6 +35,7 @@ export enum KnownItemIds {
   PilferedArmorCrate = 168097,
   UnusuallyWiseHermitCrab = 168053,
   CrimsonTidestallion = 169202,
+  UnspeakablePearlIdol = 170158,
 
   // Murloco
   HungryHeraldsTentacleTaco = 170100
@@ -323,6 +324,21 @@ let items: Item[] = [
     cost: {
       type: CostType.Gold,
       quantity: 666
+    }
+  },
+  {
+    name: "Unspeakable Pearl Idol",
+    itemId: KnownItemIds.UnspeakablePearlIdol,
+    rarity: Rarity.Epic,
+    mrrl: true,
+    secret: true,
+    cost: {
+      type: CostType.Items,
+      items: [
+        { itemId: KnownItemIds.SeaGiantFootDust, quantity: 3 },
+        { itemId: KnownItemIds.SmellyPileOfGloop, quantity: 4 },
+        { itemId: KnownItemIds.ParticularlyDenseRock, quantity: 3 }
+      ]
     }
   }
 ];

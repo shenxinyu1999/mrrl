@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent } from "react";
 import "./App.scss";
 import "./simple-grid.css";
 
-import Want from "./components/Want";
+import WantedItems from "./components/WantedItems";
 import { findRoute, RouteStep } from "./utils";
 import Suggestions from "./components/Suggestions";
 import Result from "./components/Result";
@@ -125,7 +125,7 @@ const App: React.FC = () => {
         includeSecretShop={state.includeSecretShop}
         selectedItems={state.selectedItems}
       />
-      <Want
+      <WantedItems
         onQuantityChange={onQuantityChange}
         wantedItems={state.wantedItems}
         includeSecretShop={state.includeSecretShop}

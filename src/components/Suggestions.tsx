@@ -1,9 +1,7 @@
 import React from "react";
-
+import style from "./Suggestions.module.scss";
 import { mrrl } from "../data/vendor";
 import Item from "./Item";
-
-import "./Suggestions.scss";
 import { getVendorItems } from "../data";
 
 interface Props {
@@ -18,23 +16,17 @@ const Suggestions: React.FC<Props> = ({
   selectedItems
 }) => {
   return (
-    <div className="suggestions__container">
-      <h2>
-        Select an item you want to buy here, or populate the materials manually.
-      </h2>
-      {/* <div className="suggestions__filter">
-        Filter: <input type="text" />
-      </div> */}
+    <div>
+      <h2>Items</h2>
 
-      <div className="suggestions__results">
+      <div className={style.results}>
         {getVendorItems(mrrl)
           .filter(inv => !inv.secret || includeSecretShop)
           .map(inv => (
             <div
               key={inv.itemId}
               className={
-                "col-4 suggestions__item " +
-                (selectedItems[inv.itemId] ? "suggestions__item--selected" : "")
+                "col-4 " + (selectedItems[inv.itemId] ? style.selected : "")
               }
             >
               <Item

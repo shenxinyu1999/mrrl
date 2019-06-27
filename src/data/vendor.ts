@@ -55,6 +55,7 @@ export let mrrl: Vendor = {
   name: "Mrrl",
   inventory: [
     KnownItemIds.UnusuallyWiseHermitCrab,
+    KnownItemIds.UnspeakablePearlIdol,
     KnownItemIds.CrimsonTidestallion,
     KnownItemIds.CuriouslyWarmKelpBundle,
     KnownItemIds.GrimyManapearlBracelet,

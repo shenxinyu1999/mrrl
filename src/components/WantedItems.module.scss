@@ -1,12 +1,12 @@
 @import "../variables";
 
-.want__item {
+.item {
   display: inline-flex;
   align-items: center;
   flex: 0 0 250px;
 }
 
-.want__input {
+.input {
   height: $item-icon-size;
   width: $item-icon-size * 2;
   font-size: $wanted-mats-input-font-size;

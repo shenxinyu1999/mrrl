@@ -2,15 +2,12 @@
   padding: 15px 0;
 }
 
-.suggestions__results {
+.results {
   display: flex;
   flex-wrap: wrap;
-}
-
-.suggestions__results {
   cursor: pointer;
 }
 
-.suggestions__item--selected {
+.selected {
   background-color: #333333;
 }
