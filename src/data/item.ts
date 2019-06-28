@@ -36,6 +36,8 @@ export enum KnownItemIds {
   UnusuallyWiseHermitCrab = 168053,
   CrimsonTidestallion = 169202,
   UnspeakablePearlIdol = 170158,
+  FaintlyHummingSeaStones = 168094,
+  WaterloggedToolbox = 168096,
 
   // Murloco
   HungryHeraldsTentacleTaco = 170100
@@ -254,9 +256,9 @@ let items: Item[] = [
     cost: {
       type: CostType.Items,
       items: [
-        { itemId: KnownItemIds.HealthyMurlocLunch, quantity: 4 },
-        { itemId: KnownItemIds.ParticularlyDenseRock, quantity: 2 },
-        { itemId: KnownItemIds.ExtraSlimySnail, quantity: 3 }
+        { itemId: KnownItemIds.GhostFood, quantity: 4 },
+        { itemId: KnownItemIds.HealthyMurlocLunch, quantity: 3 },
+        { itemId: KnownItemIds.SeaGiantFootDust, quantity: 3 }
       ]
     }
   },
@@ -335,9 +337,38 @@ let items: Item[] = [
     cost: {
       type: CostType.Items,
       items: [
-        { itemId: KnownItemIds.SeaGiantFootDust, quantity: 3 },
-        { itemId: KnownItemIds.SmellyPileOfGloop, quantity: 4 },
-        { itemId: KnownItemIds.ParticularlyDenseRock, quantity: 3 }
+        { itemId: KnownItemIds.OverwhelminglyAlluringIdol, quantity: 3 },
+        { itemId: KnownItemIds.CultistPinkyFinger, quantity: 4 },
+        { itemId: KnownItemIds.HungryHeraldsTentacleTaco, quantity: 1 }
+      ]
+    }
+  },
+  {
+    name: "Faintly Humming Sea Stones",
+    itemId: KnownItemIds.FaintlyHummingSeaStones,
+    rarity: Rarity.Epic,
+    mrrl: true,
+    cost: {
+      type: CostType.Items,
+      items: [
+        { itemId: KnownItemIds.GhostFood, quantity: 5 },
+        { itemId: KnownItemIds.ParticularlyDenseRock, quantity: 1 },
+        { itemId: KnownItemIds.SeaGiantFootDust, quantity: 2 }
+      ]
+    }
+  },
+  {
+    name: "Waterlogged Toolbox",
+    itemId: KnownItemIds.WaterloggedToolbox,
+    rarity: Rarity.Epic,
+    mrrl: true,
+    secret: true,
+    cost: {
+      type: CostType.Items,
+      items: [
+        { itemId: KnownItemIds.BeckonersRosettaStone, quantity: 1 },
+        { itemId: KnownItemIds.PulsatingBloodStone, quantity: 1 },
+        { itemId: KnownItemIds.OverwhelminglyAlluringIdol, quantity: 1 }
       ]
     }
   }
