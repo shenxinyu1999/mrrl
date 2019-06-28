@@ -1,0 +1,7 @@
+@import "../../variables";
+
+.quantity {
+  font-size: $step-item-quantity-font-size;
+  text-align: right;
+  min-width: 50px;
+}

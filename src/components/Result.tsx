@@ -4,6 +4,9 @@ import { RouteStep } from "../utils";
 import "./Result.scss";
 import Item from "./Item";
 import { Materials } from "../data";
+import Vendor from "./Vendor/Vendor";
+import { statement } from "@babel/template";
+import StepItems from "./StepItems/StepItems";
 
 interface Props {
   route: RouteStep[];
@@ -30,46 +33,24 @@ const Result: React.FC<Props> = ({
           <thead>
             <tr>
               <th>#</th>
-              <th>Vendor</th>
-              <th>Items/Action</th>
+              <th />
             </tr>
           </thead>
           <tbody>
             {route.map((step, index) => (
               <tr key={index}>
                 <td>{index + 1}</td>
-                <td className="results__vendor">
-                  <div>{step.vendor.name}</div>
-                  {includeVendorPictures && (
-                    <div>
-                      <a href={step.vendor.url}>
-                        <img
-                          src={
-                            process.env.PUBLIC_URL +
-                            "/images/npc/" +
-                            step.vendor.name +
-                            ".jpg"
-                          }
-                          alt={step.vendor.name}
-                        />
-                      </a>
-                    </div>
-                  )}
-                  <div>{step.vendor.instruction}</div>
-                </td>
                 <td>
-                  {step.items &&
-                    step.items.map((item, index) => (
-                      <div key={index} className="results__item">
-                        <span className="col-3 results__quantity">
-                          {item.quantity}
-                        </span>
-                        <div className="col-10">
-                          <Item itemId={item.itemId} />
-                        </div>
-                      </div>
-                    ))}
-                  <div className="results__other">{step.other}</div>
+                  <div className="results__vendor">
+                    <Vendor
+                      vendor={step.vendor}
+                      includeVendorPictures={includeVendorPictures}
+                    />
+                    <div className="results__instruction">
+                      <StepItems step={step} />
+                      <div className="results__other">{step.other}</div>
+                    </div>
+                  </div>
                 </td>
               </tr>
             ))}

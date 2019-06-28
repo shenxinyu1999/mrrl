@@ -6,15 +6,14 @@
   border-collapse: collapse;
 }
 
-.results__steps th,
-.results__steps td {
+.results__steps > thead > tr > th,
+.results__steps > tbody > tr > td {
   border: 1px solid black;
   padding: 5px;
 }
 
-.results__vendor {
-  text-align: center;
-  max-width: 256px;
+.results__steps > tbody > tr:nth-child(even) {
+  background-color: #333333;
 }
 
 .results__quantity {
@@ -32,10 +31,27 @@
 }
 
 .results__other {
-  font-size: 32px;
-  padding-left: 74px;
+  font-size: 24px;
 }
 
-.results__steps tr:nth-child(even) {
-  background-color: #333333;
+.results__vendor {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.results__instruction {
+  width: 350px;
+}
+
+@media (max-width: 575.98px) {
+  .results__vendor {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .results__instruction {
+    width: auto;
+  }
 }
