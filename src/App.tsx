@@ -119,7 +119,19 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <h1>Mrrl! (beta)</h1>
+      <h1>
+        Mrrl! (beta){" "}
+        <span className="github">
+          <a href="https://github.com/kevindqc/mrrl">
+            <img
+              src={
+                process.env.PUBLIC_URL + "/images/GitHub-Mark-Light-32px.png"
+              }
+              alt="Github"
+            />{" "}
+          </a>
+        </span>
+      </h1>
       <Suggestions
         onItemSelected={onItemSelected}
         includeSecretShop={state.includeSecretShop}
