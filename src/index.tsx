@@ -1,6 +1,3 @@
-import "react-app-polyfill/stable";
-//import "array-flat-polyfill";
-
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.scss";
