@@ -19,7 +19,7 @@ const Result: React.FC<Props> = ({
   requiredMats,
   includeVendorPictures
 }) => {
-  if (route.length == 0) {
+  if (route.length === 0) {
     return null;
   }
 

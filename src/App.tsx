@@ -132,11 +132,11 @@ const App: React.FC = () => {
           </a>
         </span>
       </h1>
-      <Suggestions
+      {/* <Suggestions
         onItemSelected={onItemSelected}
         includeSecretShop={state.includeSecretShop}
         selectedItems={state.selectedItems}
-      />
+      /> */}
       <WantedItems
         onQuantityChange={onQuantityChange}
         wantedItems={state.wantedItems}

@@ -38,6 +38,8 @@ export enum KnownItemIds {
   UnspeakablePearlIdol = 170158,
   FaintlyHummingSeaStones = 168094,
   WaterloggedToolbox = 168096,
+  SeverelyRustedLockbox = 168091,
+  StrangeCoralCluster = 168095,
 
   // Murloco
   HungryHeraldsTentacleTaco = 170100
@@ -310,12 +312,13 @@ let items: Item[] = [
     itemId: KnownItemIds.PilferedArmorCrate,
     rarity: Rarity.Epic,
     mrrl: true,
+    secret: true,
     cost: {
       type: CostType.Items,
       items: [
-        { itemId: KnownItemIds.SeaGiantFootDust, quantity: 3 },
-        { itemId: KnownItemIds.SmellyPileOfGloop, quantity: 4 },
-        { itemId: KnownItemIds.ParticularlyDenseRock, quantity: 3 }
+        { itemId: KnownItemIds.BeckonersRosettaStone, quantity: 2 },
+        { itemId: KnownItemIds.HungryHeraldsTentacleTaco, quantity: 1 },
+        { itemId: KnownItemIds.CultistPinkyFinger, quantity: 2 }
       ]
     }
   },
@@ -337,8 +340,8 @@ let items: Item[] = [
     cost: {
       type: CostType.Items,
       items: [
-        { itemId: KnownItemIds.OverwhelminglyAlluringIdol, quantity: 3 },
-        { itemId: KnownItemIds.CultistPinkyFinger, quantity: 4 },
+        { itemId: KnownItemIds.OverwhelminglyAlluringIdol, quantity: 4 },
+        { itemId: KnownItemIds.CultistPinkyFinger, quantity: 2 },
         { itemId: KnownItemIds.HungryHeraldsTentacleTaco, quantity: 1 }
       ]
     }
@@ -369,6 +372,34 @@ let items: Item[] = [
         { itemId: KnownItemIds.BeckonersRosettaStone, quantity: 1 },
         { itemId: KnownItemIds.PulsatingBloodStone, quantity: 1 },
         { itemId: KnownItemIds.OverwhelminglyAlluringIdol, quantity: 1 }
+      ]
+    }
+  },
+  {
+    name: "Severely Rusted Lockbox",
+    itemId: KnownItemIds.SeverelyRustedLockbox,
+    rarity: Rarity.Epic,
+    mrrl: true,
+    cost: {
+      type: CostType.Items,
+      items: [
+        { itemId: KnownItemIds.SeaGiantFootDust, quantity: 2 },
+        { itemId: KnownItemIds.SmellyPileOfGloop, quantity: 3 },
+        { itemId: KnownItemIds.ExtraSlimySnail, quantity: 2 }
+      ]
+    }
+  },
+  {
+    name: "Strange Coral Cluster",
+    itemId: KnownItemIds.StrangeCoralCluster,
+    rarity: Rarity.Epic,
+    mrrl: true,
+    cost: {
+      type: CostType.Items,
+      items: [
+        { itemId: KnownItemIds.SmellyPileOfGloop, quantity: 5 },
+        { itemId: KnownItemIds.SeaGiantFootDust, quantity: 1 },
+        { itemId: KnownItemIds.HealthyMurlocLunch, quantity: 3 }
       ]
     }
   }

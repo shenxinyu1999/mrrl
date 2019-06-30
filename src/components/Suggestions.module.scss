@@ -2,6 +2,9 @@
   display: flex;
   flex-wrap: wrap;
   cursor: pointer;
+
+  // Disable overlay that appears on the list of items when clicking on one item.
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .selected {

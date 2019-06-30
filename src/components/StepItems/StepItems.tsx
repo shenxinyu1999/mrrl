@@ -9,7 +9,7 @@ interface Props {
 }
 
 const StepItems: React.FC<Props> = ({ step }) => {
-  if (step.items == null || step.items.length == 0) {
+  if (step.items == null || step.items.length === 0) {
     return null;
   }
 
