@@ -47,7 +47,7 @@ export enum KnownItemIds {
 
 let items: Item[] = [
   {
-    name: "Unindentified Mass",
+    name: "Unidentified Mass",
     itemId: KnownItemIds.UnidentifiedMass,
     rarity: Rarity.Normal,
     cost: { type: CostType.Gold, quantity: 1 }
@@ -133,7 +133,7 @@ let items: Item[] = [
     cost: {
       type: CostType.Items,
       items: [
-        { itemId: KnownItemIds.SmellyPileOfGloop, quantity: 5 },
+        { itemId: KnownItemIds.SmellyPileOfGloop, quantity: 4 },
         { itemId: KnownItemIds.GhostFood, quantity: 7 }
       ]
     }
@@ -326,6 +326,7 @@ let items: Item[] = [
     name: "Hungry Herald's Tentacle Taco",
     itemId: KnownItemIds.HungryHeraldsTentacleTaco,
     rarity: Rarity.Epic,
+    secret: true,
     cost: {
       type: CostType.Gold,
       quantity: 666
