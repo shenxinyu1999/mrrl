@@ -13,6 +13,7 @@ import {
   WantedItem,
   Materials
 } from "./data";
+import { setLanguage } from "./data/item";
 
 interface State {
   wantedItems: WantedItem[];
@@ -20,17 +21,19 @@ interface State {
   requiredMats: Materials;
   includeSecretShop: boolean;
   includeVendorPictures: boolean;
+  locale: string
   selectedItems: { [itemId: number]: any };
 }
 
 const App: React.FC = () => {
-
+  
   const [state, setState] = useState<State>({
     wantedItems: [],
     route: [],
     requiredMats: { items: [], gold: 0 },
     includeSecretShop: true,
     includeVendorPictures: true,
+    locale: "en",
     selectedItems: {}
   });
 
@@ -119,7 +122,14 @@ const App: React.FC = () => {
   };
 
   const changeLanguage = (event: ChangeEvent<HTMLSelectElement>) => {
-    console.log(event.target.value)
+    const locale = event.target.value;
+
+    setLanguage(locale);
+
+    setState(prevState => ({
+      ...prevState,
+      locale: locale
+    }));
   }
 
   return (

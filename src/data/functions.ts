@@ -1,4 +1,4 @@
-import items from "./item";
+import { getItems } from "./item";
 import {
   Rarity,
   Vendor,
@@ -9,10 +9,12 @@ import {
 } from "./models";
 import vendors from "./vendor";
 
-let itemsById = items.reduce((map: any, item) => {
-  map[item.itemId] = item;
-  return map;
-}, {});
+let itemsById = () => {
+  getItems().reduce((map: any, item) => {
+    map[item.itemId] = item;
+    return map;
+  }, {});
+}
 
 function calculateItemIdToVendorMap(vendors: Vendor[]) {
   let result: { [itemId: number]: Vendor } = {};
@@ -35,7 +37,7 @@ export function getItem(itemId: number): Item {
 }
 
 export function getMaterialsInput(): Item[] {
-  return items
+  return getItems()
     .filter(
       i => !i.mrrl && (i.rarity === Rarity.Rare || i.rarity === Rarity.Epic)
     )
