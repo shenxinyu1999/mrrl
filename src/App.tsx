@@ -13,7 +13,7 @@ import {
   WantedItem,
   Materials
 } from "./data";
-import { setLanguage } from "./data/localization";
+import { setLanguage, strings } from "./data/localization";
 
 interface State {
   wantedItems: WantedItem[];
@@ -149,7 +149,7 @@ const App: React.FC = () => {
       </h1>
       <select onChange = {changeLanguage}>
         <option value="en">English</option>
-        <option value="zh">Chinese</option>
+        <option value="zh">中文</option>
       </select>
       {/* <Suggestions
         onItemSelected={onItemSelected}
@@ -167,7 +167,7 @@ const App: React.FC = () => {
           checked={state.includeSecretShop}
           onChange={onSecretShopChangeChecked}
         />
-        Include secret shop (cloak required)
+        {strings.App.Secret}
       </label>
       <br />
       <label>
@@ -176,7 +176,7 @@ const App: React.FC = () => {
           checked={state.includeVendorPictures}
           onChange={onIncludeVendorPicturesChange}
         />
-        Include vendor pictures
+        {strings.App.Picture}
       </label>
       <Result
         route={state.route}

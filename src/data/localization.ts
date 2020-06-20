@@ -50,6 +50,10 @@ export const strings = new LocalizedStrings({
       Steps:"Steps",
       Cost:"Cost",
       Gold:"Gold"
+    },
+    App:{
+      Secret:"Include secret shop (cloak required)",
+      Picture:"Include vendor pictures"
     }
   },
   zh: {
@@ -97,6 +101,10 @@ export const strings = new LocalizedStrings({
       Steps:"步骤",
       Cost:"花费",
       Gold:"金"
+    },
+    App:{
+      Secret:"包含秘密商品（需要特殊效果披风）",
+      Picture:"显示鱼人图片"
     }
   }}
 );
