@@ -59,6 +59,9 @@ export const strings = new LocalizedStrings({
     },
     WantedItems:{
       Materials:"Materials"
+    },
+    Util:{
+      CleanSock:"Clean the dirty socks."
     }
   },
   zh: {
@@ -115,6 +118,9 @@ export const strings = new LocalizedStrings({
     },
     WantedItems:{
       Materials:"材料"
+    },
+    Util:{
+      CleanSock:"清洗袜子"
     }
   }}
 );
