@@ -1,4 +1,5 @@
 import { Item, Rarity, CostType } from "./models";
+import { strings } from "./localization";
 
 export enum KnownItemIds {
   // Grrmlrg
@@ -45,15 +46,16 @@ export enum KnownItemIds {
   HungryHeraldsTentacleTaco = 170100
 }
 
-let items: Item[] = [
+let items: Item[] = 
+[
   {
-    name: "Unidentified Mass",
+    name: "Mass",
     itemId: KnownItemIds.UnidentifiedMass,
     rarity: Rarity.Normal,
     cost: { type: CostType.Gold, quantity: 1 }
   },
   {
-    name: "Just Regular Butter",
+    name: "Butter",
     itemId: KnownItemIds.JustRegularButter,
     rarity: Rarity.Uncommon,
     cost: {
@@ -62,7 +64,7 @@ let items: Item[] = [
     }
   },
   {
-    name: "Bag of Who-Knows-What",
+    name: "WhoKnowWhat",
     itemId: KnownItemIds.BagOfWhoKnowsWhat,
     rarity: Rarity.Uncommon,
     cost: {
@@ -71,7 +73,7 @@ let items: Item[] = [
     }
   },
   {
-    name: "Ghost Food",
+    name: "GhostFood",
     itemId: KnownItemIds.GhostFood,
     rarity: Rarity.Rare,
     cost: {
@@ -80,7 +82,7 @@ let items: Item[] = [
     }
   },
   {
-    name: "Beckoner's Rosetta Stone",
+    name: "Stone",
     itemId: KnownItemIds.BeckonersRosettaStone,
     rarity: Rarity.Epic,
     secret: true,
@@ -93,13 +95,13 @@ let items: Item[] = [
     }
   },
   {
-    name: "Sweet Sea Vegetable",
+    name: "Vegetable",
     itemId: KnownItemIds.SweetSeaVegetable,
     rarity: Rarity.Normal,
     cost: { type: CostType.Gold, quantity: 1 }
   },
   {
-    name: "Jar of Fish Faces",
+    name: "FishFace",
     itemId: KnownItemIds.JarOfFishFaces,
     rarity: Rarity.Uncommon,
     cost: {
@@ -108,7 +110,7 @@ let items: Item[] = [
     }
   },
   {
-    name: "Dirty Murloc Sock",
+    name: "Sock",
     itemId: KnownItemIds.DirtyMurlocSock,
     rarity: Rarity.Uncommon,
     cost: {
@@ -117,7 +119,7 @@ let items: Item[] = [
     }
   },
   {
-    name: "Healthy Murloc Lunch",
+    name: "Lunch",
     itemId: KnownItemIds.HealthyMurlocLunch,
     rarity: Rarity.Rare,
     cost: {
@@ -126,7 +128,7 @@ let items: Item[] = [
     }
   },
   {
-    name: "Cultist Pinky Finger",
+    name: "Finger",
     itemId: KnownItemIds.CultistPinkyFinger,
     rarity: Rarity.Epic,
     secret: true,
@@ -139,13 +141,13 @@ let items: Item[] = [
     }
   },
   {
-    name: "Flatulent Fish",
+    name: "Fish",
     itemId: KnownItemIds.FlatulentFish,
     rarity: Rarity.Normal,
     cost: { type: CostType.Gold, quantity: 1 }
   },
   {
-    name: "Curious Murloc Horn",
+    name: "Horn",
     itemId: KnownItemIds.CuriousMurlocHorn,
     rarity: Rarity.Uncommon,
     cost: {
@@ -154,7 +156,7 @@ let items: Item[] = [
     }
   },
   {
-    name: "Extra-Slimy Snail",
+    name: "Snail",
     itemId: KnownItemIds.ExtraSlimySnail,
     rarity: Rarity.Rare,
     cost: {
@@ -163,7 +165,7 @@ let items: Item[] = [
     }
   },
   {
-    name: "Sea Giant Foot Dust",
+    name: "FootDust",
     itemId: KnownItemIds.SeaGiantFootDust,
     rarity: Rarity.Rare,
     cost: {
@@ -177,7 +179,7 @@ let items: Item[] = [
     }
   },
   {
-    name: "Overwhelmingly-Alluring Idol",
+    name: "Idol",
     itemId: KnownItemIds.OverwhelminglyAlluringIdol,
     rarity: Rarity.Epic,
     secret: true,
@@ -190,14 +192,14 @@ let items: Item[] = [
     }
   },
   {
-    name: "Slimy Naga Eyeball",
+    name: "Eyeball",
     itemId: KnownItemIds.SlimyNagaEyeball,
     rarity: Rarity.Normal,
     cost: { type: CostType.Gold, quantity: 1 }
   },
 
   {
-    name: "Disintegrating Sand Sculpture",
+    name: "Sculpture",
     itemId: KnownItemIds.DisintegratingSandSculpture,
     rarity: Rarity.Uncommon,
     cost: {
@@ -211,7 +213,7 @@ let items: Item[] = [
     }
   },
   {
-    name: "Particularly Dense Rock",
+    name: "Rock",
     itemId: KnownItemIds.ParticularlyDenseRock,
     rarity: Rarity.Rare,
     cost: {
@@ -229,7 +231,7 @@ let items: Item[] = [
     }
   },
   {
-    name: "Smelly Pile of Gloop",
+    name: "Gloop",
     itemId: KnownItemIds.SmellyPileOfGloop,
     rarity: Rarity.Rare,
     cost: {
@@ -238,7 +240,7 @@ let items: Item[] = [
     }
   },
   {
-    name: "Pulsating Blood Stone",
+    name: "BloodStone",
     itemId: KnownItemIds.PulsatingBloodStone,
     rarity: Rarity.Epic,
     secret: true,
@@ -251,7 +253,7 @@ let items: Item[] = [
     }
   },
   {
-    name: "Unusually Wise Hermit Crab",
+    name: "Crab",
     itemId: KnownItemIds.UnusuallyWiseHermitCrab,
     rarity: Rarity.Epic,
     mrrl: true,
@@ -265,7 +267,7 @@ let items: Item[] = [
     }
   },
   {
-    name: "Crimson Tidestallion",
+    name: "Tidestallion",
     itemId: KnownItemIds.CrimsonTidestallion,
     rarity: Rarity.Epic,
     mrrl: true,
@@ -280,7 +282,7 @@ let items: Item[] = [
     }
   },
   {
-    name: "Curiously Warm Kelp Bundle",
+    name: "Bundle",
     itemId: KnownItemIds.CuriouslyWarmKelpBundle,
     rarity: Rarity.Epic,
     mrrl: true,
@@ -294,7 +296,7 @@ let items: Item[] = [
     }
   },
   {
-    name: "Grimy Manapearl Bracelet",
+    name: "Bracelet",
     itemId: KnownItemIds.GrimyManapearlBracelet,
     rarity: Rarity.Epic,
     mrrl: true,
@@ -308,7 +310,7 @@ let items: Item[] = [
     }
   },
   {
-    name: "Pilfered Armor Crate",
+    name: "Crate",
     itemId: KnownItemIds.PilferedArmorCrate,
     rarity: Rarity.Epic,
     mrrl: true,
@@ -323,7 +325,7 @@ let items: Item[] = [
     }
   },
   {
-    name: "Hungry Herald's Tentacle Taco",
+    name: "Taco",
     itemId: KnownItemIds.HungryHeraldsTentacleTaco,
     rarity: Rarity.Epic,
     secret: true,
@@ -333,7 +335,7 @@ let items: Item[] = [
     }
   },
   {
-    name: "Unspeakable Pearl Idol",
+    name: "PearlIdol",
     itemId: KnownItemIds.UnspeakablePearlIdol,
     rarity: Rarity.Epic,
     mrrl: true,
@@ -348,7 +350,7 @@ let items: Item[] = [
     }
   },
   {
-    name: "Faintly Humming Sea Stones",
+    name: "SeaStones",
     itemId: KnownItemIds.FaintlyHummingSeaStones,
     rarity: Rarity.Epic,
     mrrl: true,
@@ -362,7 +364,7 @@ let items: Item[] = [
     }
   },
   {
-    name: "Waterlogged Toolbox",
+    name: "ToolBox",
     itemId: KnownItemIds.WaterloggedToolbox,
     rarity: Rarity.Epic,
     mrrl: true,
@@ -377,7 +379,7 @@ let items: Item[] = [
     }
   },
   {
-    name: "Severely Rusted Lockbox",
+    name: "Lockbox",
     itemId: KnownItemIds.SeverelyRustedLockbox,
     rarity: Rarity.Epic,
     mrrl: true,
@@ -391,7 +393,7 @@ let items: Item[] = [
     }
   },
   {
-    name: "Strange Coral Cluster",
+    name: "Coral",
     itemId: KnownItemIds.StrangeCoralCluster,
     rarity: Rarity.Epic,
     mrrl: true,
@@ -406,4 +408,4 @@ let items: Item[] = [
   }
 ];
 
-export default items;
+export default items

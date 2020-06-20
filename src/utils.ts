@@ -7,6 +7,7 @@ import {
   getItem
 } from "./data";
 import { flrgrrl } from "./data/vendor";
+import { strings } from "./data/localization";
 
 interface Materials {
   items: { itemId: number; quantity: number }[];
@@ -180,7 +181,7 @@ function addCleanSockStep(route: RouteStep[]) {
         route.splice(i, 0, {
           vendor: flrgrrl,
           items: [],
-          other: "Clean the dirty socks."
+          other: strings.Util.CleanSock
         });
         hasDirtySocks = false;
         break;
@@ -205,7 +206,7 @@ function addCleanSockStep(route: RouteStep[]) {
         route.splice(i, 0, {
           vendor: flrgrrl,
           items: [],
-          other: "Clean the dirty socks."
+          other: strings.Util.CleanSock
         });
 
         hasDirtySocks = false;

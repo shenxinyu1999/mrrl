@@ -34,8 +34,8 @@ export interface Item {
 
 export interface Vendor {
   name: string;
-  instruction?: string;
-  url?: string;
+  instruction: string;
+  url: string;
   inventory: number[];
 }
 

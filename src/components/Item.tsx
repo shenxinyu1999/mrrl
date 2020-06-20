@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Item.module.scss";
 import { getItem } from "../data";
+import { strings } from "../data/localization";
 
 interface Props {
   itemId: number;
@@ -16,7 +17,7 @@ const Item: React.FC<Props> = ({ itemId, onClick }) => {
       onClick={onClick}
     >
       <img className={styles.image} src={getImageUrl(itemId)} alt={item.name} />
-      <span className={styles.name}>{item.name}</span>
+      <span className={styles.name}>{strings.Items[item.name]}</span>
     </div>
   );
 };

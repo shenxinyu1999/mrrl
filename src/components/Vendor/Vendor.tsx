@@ -1,5 +1,6 @@
 import React from "react";
 import { Vendor } from "../../data/vendor";
+import { strings } from "../../data/localization";
 
 import style from "./Vendor.module.scss";
 
@@ -11,10 +12,10 @@ interface Props {
 const VendorCmp: React.FC<Props> = ({ vendor, includeVendorPictures }) => {
   return (
     <div className={style.container}>
-      <div className={style.name}>{vendor.name}</div>
+      <div className={style.name}>{strings.Vendor[vendor.name]}</div>
       {includeVendorPictures && (
         <div>
-          <a href={vendor.url}>
+          <a href={strings.Vendor[vendor.url]}>
             <img
               src={
                 process.env.PUBLIC_URL + "/images/npc/" + vendor.name + ".jpg"
@@ -24,7 +25,7 @@ const VendorCmp: React.FC<Props> = ({ vendor, includeVendorPictures }) => {
           </a>
         </div>
       )}
-      <div>{vendor.instruction}</div>
+      <div>{strings.Vendor[vendor.instruction]}</div>
     </div>
   );
 };

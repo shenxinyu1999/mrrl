@@ -2,13 +2,15 @@ import { KnownItemIds } from "./item";
 
 export interface Vendor {
   name: string;
-  instruction?: string;
-  url?: string;
+  instruction: string;
+  url: string;
   inventory: number[];
 }
 
 export let hurlgrl: Vendor = {
   name: "Hurlgrl",
+  instruction:"none",
+  url:"none",
   inventory: [
     KnownItemIds.SweetSeaVegetable,
     KnownItemIds.JarOfFishFaces,
@@ -20,6 +22,8 @@ export let hurlgrl: Vendor = {
 
 export let flrgrrl: Vendor = {
   name: "Flrgrrl",
+  instruction:"none",
+  url:"none",
   inventory: [
     KnownItemIds.UnidentifiedMass,
     KnownItemIds.JustRegularButter,
@@ -31,6 +35,8 @@ export let flrgrrl: Vendor = {
 
 export let grrmrlg: Vendor = {
   name: "Grrmrlg",
+  instruction:"none",
+  url:"none",
   inventory: [
     KnownItemIds.FlatulentFish,
     KnownItemIds.CuriousMurlocHorn,
@@ -42,6 +48,8 @@ export let grrmrlg: Vendor = {
 
 export let mrrglrlr: Vendor = {
   name: "Mrrglrlr",
+  instruction:"none",
+  url:"none",
   inventory: [
     KnownItemIds.SlimyNagaEyeball,
     KnownItemIds.DisintegratingSandSculpture,
@@ -53,6 +61,8 @@ export let mrrglrlr: Vendor = {
 
 export let mrrl: Vendor = {
   name: "Mrrl",
+  instruction:"none",
+  url:"none",
   inventory: [
     KnownItemIds.StrangeCoralCluster,
     KnownItemIds.UnspeakablePearlIdol,
@@ -70,9 +80,9 @@ export let mrrl: Vendor = {
 let murloco: Vendor = {
   name: "Murloco",
   instruction:
-    "Found at 46.22 32.57 in Nazjatar. Kill the 2 Naga guards to release Murloco. He is not always there. Click on the map for more info.",
+    "MurlocoInst",
   url:
-    "https://www.wowhead.com/guides/mrrls-trading-game-obtaining-crimson-tidestallion#acquiring-the-hungry-heralds-tentacle-taco",
+    "MurlocoURL",
   inventory: [KnownItemIds.HungryHeraldsTentacleTaco]
 };
 

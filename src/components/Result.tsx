@@ -2,11 +2,10 @@ import React from "react";
 import { RouteStep } from "../utils";
 
 import "./Result.scss";
-import Item from "./Item";
 import { Materials } from "../data";
 import Vendor from "./Vendor/Vendor";
-import { statement } from "@babel/template";
 import StepItems from "./StepItems/StepItems";
+import { strings } from "../data/localization";
 
 interface Props {
   route: RouteStep[];
@@ -25,9 +24,9 @@ const Result: React.FC<Props> = ({
 
   return (
     <div className="results__container">
-      <h2>Results</h2>
-      Cost: {requiredMats.gold} Gold
-      <h3>Steps</h3>
+      <h2>{strings.Result.Results}</h2>
+      {strings.Result.Cost}: {requiredMats.gold} {strings.Result.Gold}
+      <h3>{strings.Result.Steps}</h3>
       <div className="results__route">
         <table className="results__steps">
           <thead>

@@ -2,6 +2,7 @@ import React, { ChangeEvent, useCallback } from "react";
 import style from "./WantedItems.module.scss";
 import Item from "./Item";
 import { getMaterialsInput, WantedItem } from "../data";
+import { strings } from "../data/localization";
 
 let offeredItems = getMaterialsInput();
 
@@ -38,7 +39,7 @@ const WantedItems: React.FC<Props> = ({
 
   return (
     <div>
-      <h2>Materials</h2>
+      <h2>{strings.WantedItems.Materials}</h2>
       <div>
         {offeredItems
           .filter(item => !item.secret || includeSecretShop)
