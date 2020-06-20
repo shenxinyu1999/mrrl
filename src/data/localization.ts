@@ -37,12 +37,20 @@ export const strings = new LocalizedStrings({
     ToolBox:"Waterlogged Toolbox",
     Vegetable:"Sweet Sea Vegetable",
     WhoKnowWhat:"Bag of Who-Knows-What",
-    Hurlgrl:"Hurlgrl",
-    Flrgrrl:"Flrgrrl",
-    Grrmrlg:"Grrmrlg",
-    Mrrglrlr:"Mrrglrlr",
-    Mrrl:"Mrrl",
-    Murloco:"Murloco"
+    Vendor:{
+      Hurlgrl:"Hurlgrl",
+      Flrgrrl:"Flrgrrl",
+      Grrmrlg:"Grrmrlg",
+      Mrrglrlr:"Mrrglrlr",
+      Mrrl:"Mrrl",
+      Murloco:"Murloco"
+    },
+    Result:{
+      Results:"Results",
+      Steps:"Steps",
+      Cost:"Cost",
+      Gold:"Gold"
+    }
   },
   zh: {
     BloodStone:"脉动的血石",
@@ -76,11 +84,19 @@ export const strings = new LocalizedStrings({
     ToolBox:"浸水的工具箱",
     Vegetable:"甜美的海菜",
     WhoKnowWhat:"一袋不可名状之物",
-    Hurlgrl:"胡勒格勒",
-    Flrgrrl:"弗勒格勒",
-    Grrmrlg:"格姆勒格",
-    Mrrglrlr:"穆勒格勒勒",
-    Mrrl:"穆勒尔",
-    Murloco:"莫洛戈"
+    Vendor:{
+      Hurlgrl:"胡勒格勒",
+      Flrgrrl:"弗勒格勒",
+      Grrmrlg:"格姆勒格",
+      Mrrglrlr:"穆勒格勒勒",
+      Mrrl:"穆勒尔",
+      Murloco:"莫洛戈"
+    },
+    Result:{
+      Results:"计算结果",
+      Steps:"步骤",
+      Cost:"花费",
+      Gold:"金"
+    }
   }}
 );
