@@ -45,7 +45,10 @@ export const strings = new LocalizedStrings({
       Grrmrlg:"Grrmrlg",
       Mrrglrlr:"Mrrglrlr",
       Mrrl:"Mrrl",
-      Murloco:"Murloco"
+      Murloco:"Murloco",
+      MurlocoInst:"Found at 46.22 32.57 in Nazjatar. Kill the 2 Naga guards to release Murloco. He is not always there. Click on the map for more info.",
+      MurlocoURL:"https://www.wowhead.com/guides/mrrls-trading-game-obtaining-crimson-tidestallion#acquiring-the-hungry-heralds-tentacle-taco",
+      none:""
     },
     Result:{
       Results:"Results",
@@ -104,7 +107,8 @@ export const strings = new LocalizedStrings({
       Grrmrlg:"格姆勒格",
       Mrrglrlr:"穆勒格勒勒",
       Mrrl:"穆勒尔",
-      Murloco:"莫洛戈"
+      Murloco:"莫洛戈",
+      MurlocoInst:"纳沙塔尔坐标46.22 32.57的山洞中。杀掉两个娜迦守卫以开始营救莫罗戈。有可能不刷新，点击地图前往wowhead页面查看更多信息。"
     },
     Result:{
       Results:"计算结果",

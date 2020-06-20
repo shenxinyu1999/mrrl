@@ -15,7 +15,7 @@ const VendorCmp: React.FC<Props> = ({ vendor, includeVendorPictures }) => {
       <div className={style.name}>{strings.Vendor[vendor.name]}</div>
       {includeVendorPictures && (
         <div>
-          <a href={vendor.url}>
+          <a href={strings.Vendor[vendor.url]}>
             <img
               src={
                 process.env.PUBLIC_URL + "/images/npc/" + vendor.name + ".jpg"
@@ -25,7 +25,7 @@ const VendorCmp: React.FC<Props> = ({ vendor, includeVendorPictures }) => {
           </a>
         </div>
       )}
-      <div>{vendor.instruction}</div>
+      <div>{strings.Vendor[vendor.instruction]}</div>
     </div>
   );
 };
