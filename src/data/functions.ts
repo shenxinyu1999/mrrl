@@ -9,13 +9,6 @@ import {
 } from "./models";
 import vendors from "./vendor";
 
-let itemsById = () => {
-  getItems().reduce((map: any, item) => {
-    map[item.itemId] = item;
-    return map;
-  }, {});
-}
-
 function calculateItemIdToVendorMap(vendors: Vendor[]) {
   let result: { [itemId: number]: Vendor } = {};
 
@@ -33,7 +26,10 @@ function calculateItemIdToVendorMap(vendors: Vendor[]) {
 export let vendorByItemId = calculateItemIdToVendorMap(vendors);
 
 export function getItem(itemId: number): Item {
-  return itemsById[itemId];
+  return getItems().reduce((map: any, item) => {
+    map[item.itemId] = item;
+    return map;
+  }, {})[itemId];
 }
 
 export function getMaterialsInput(): Item[] {
@@ -52,7 +48,10 @@ export function getMaterialsInput(): Item[] {
 }
 
 export function getVendorItems(vendor: Vendor): Item[] {
-  return vendor.inventory.map(itemId => itemsById[itemId]);
+  return vendor.inventory.map(itemId => getItems().reduce((map: any, item) => {
+    map[item.itemId] = item;
+    return map;
+  }, {})[itemId]);
 }
 
 export function getVendorOfItem(itemId: number): Vendor {
