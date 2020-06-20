@@ -108,7 +108,7 @@ export const strings = new LocalizedStrings({
       Mrrglrlr:"穆勒格勒勒",
       Mrrl:"穆勒尔",
       Murloco:"莫洛戈",
-      MurlocoInst:"纳沙塔尔坐标46.22 32.57的山洞中。杀掉两个娜迦守卫以开始营救莫罗戈。有可能不刷新，点击地图前往wowhead页面查看更多信息。",
+      MurlocoInst:"纳沙塔尔坐标46.22 32.57（绿点）的山洞中。杀掉两个娜迦守卫以开始营救莫罗戈。有可能不刷新，点击地图前往wowhead页面查看更多信息。",
       MurlocoURL:"https://www.wowhead.com/guides/mrrls-trading-game-obtaining-crimson-tidestallion#acquiring-the-hungry-heralds-tentacle-taco",
       none:""
     },
