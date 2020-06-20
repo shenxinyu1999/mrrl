@@ -1,5 +1,6 @@
 import React from "react";
 import { Vendor } from "../../data/vendor";
+import { strings } from "../../data/localization";
 
 import style from "./Vendor.module.scss";
 
@@ -11,7 +12,7 @@ interface Props {
 const VendorCmp: React.FC<Props> = ({ vendor, includeVendorPictures }) => {
   return (
     <div className={style.container}>
-      <div className={style.name}>{vendor.name}</div>
+      <div className={style.name}>{strings.Vendor[vendor.name]}</div>
       {includeVendorPictures && (
         <div>
           <a href={vendor.url}>

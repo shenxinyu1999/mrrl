@@ -1,5 +1,4 @@
 import { KnownItemIds } from "./item";
-import { strings } from "./localization";
 
 export interface Vendor {
   name: string;
@@ -9,7 +8,7 @@ export interface Vendor {
 }
 
 export let hurlgrl: Vendor = {
-  name: strings.Hurlgrl,
+  name: "Hurlgrl",
   inventory: [
     KnownItemIds.SweetSeaVegetable,
     KnownItemIds.JarOfFishFaces,
@@ -20,7 +19,7 @@ export let hurlgrl: Vendor = {
 };
 
 export let flrgrrl: Vendor = {
-  name: strings.Flrgrrl,
+  name: "Flrgrrl",
   inventory: [
     KnownItemIds.UnidentifiedMass,
     KnownItemIds.JustRegularButter,
@@ -31,7 +30,7 @@ export let flrgrrl: Vendor = {
 };
 
 export let grrmrlg: Vendor = {
-  name: strings.Grrmrlg,
+  name: "Grrmrlg",
   inventory: [
     KnownItemIds.FlatulentFish,
     KnownItemIds.CuriousMurlocHorn,
@@ -42,7 +41,7 @@ export let grrmrlg: Vendor = {
 };
 
 export let mrrglrlr: Vendor = {
-  name: strings.Mrrglrlr,
+  name: "Mrrglrlr",
   inventory: [
     KnownItemIds.SlimyNagaEyeball,
     KnownItemIds.DisintegratingSandSculpture,
@@ -53,7 +52,7 @@ export let mrrglrlr: Vendor = {
 };
 
 export let mrrl: Vendor = {
-  name: strings.Mrrl,
+  name: "Mrrl",
   inventory: [
     KnownItemIds.StrangeCoralCluster,
     KnownItemIds.UnspeakablePearlIdol,
@@ -69,7 +68,7 @@ export let mrrl: Vendor = {
 };
 
 let murloco: Vendor = {
-  name: strings.Murloco,
+  name: "Murloco",
   instruction:
     "Found at 46.22 32.57 in Nazjatar. Kill the 2 Naga guards to release Murloco. He is not always there. Click on the map for more info.",
   url:
