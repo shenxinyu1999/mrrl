@@ -1,4 +1,4 @@
-import { getItems } from "./item";
+import items from "./item";
 import {
   Rarity,
   Vendor,
@@ -25,15 +25,17 @@ function calculateItemIdToVendorMap(vendors: Vendor[]) {
 
 export let vendorByItemId = calculateItemIdToVendorMap(vendors);
 
+let itemsById = items.reduce((map: any, item) => {
+  map[item.itemId] = item;
+  return map;
+}, {})
+
 export function getItem(itemId: number): Item {
-  return getItems().reduce((map: any, item) => {
-    map[item.itemId] = item;
-    return map;
-  }, {})[itemId];
+  return itemsById[itemId];
 }
 
 export function getMaterialsInput(): Item[] {
-  return getItems()
+  return items
     .filter(
       i => !i.mrrl && (i.rarity === Rarity.Rare || i.rarity === Rarity.Epic)
     )
@@ -48,10 +50,7 @@ export function getMaterialsInput(): Item[] {
 }
 
 export function getVendorItems(vendor: Vendor): Item[] {
-  return vendor.inventory.map(itemId => getItems().reduce((map: any, item) => {
-    map[item.itemId] = item;
-    return map;
-  }, {})[itemId]);
+  return vendor.inventory.map(itemId => itemsById[itemId]);
 }
 
 export function getVendorOfItem(itemId: number): Vendor {
