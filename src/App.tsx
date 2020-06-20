@@ -13,7 +13,7 @@ import {
   WantedItem,
   Materials
 } from "./data";
-import { setLanguage } from "./data/item";
+import { setLanguage } from "./data/localization";
 
 interface State {
   wantedItems: WantedItem[];
