@@ -24,6 +24,7 @@ interface State {
 }
 
 const App: React.FC = () => {
+
   const [state, setState] = useState<State>({
     wantedItems: [],
     route: [],
@@ -117,6 +118,10 @@ const App: React.FC = () => {
     }));
   };
 
+  const changeLanguage = (event: ChangeEvent<HTMLSelectElement>) => {
+    console.log(event.target.value)
+  }
+
   return (
     <div className="App">
       <h1>
@@ -132,6 +137,10 @@ const App: React.FC = () => {
           </a>
         </span>
       </h1>
+      <select onChange = {changeLanguage}>
+        <option value="en">English</option>
+        <option value="zh">Chinese</option>
+      </select>
       {/* <Suggestions
         onItemSelected={onItemSelected}
         includeSecretShop={state.includeSecretShop}
