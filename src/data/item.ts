@@ -49,13 +49,13 @@ export enum KnownItemIds {
 export function getItems(): Item[] {
   return [
     {
-      name: strings.Mass,
+      name: "Mass",
       itemId: KnownItemIds.UnidentifiedMass,
       rarity: Rarity.Normal,
       cost: { type: CostType.Gold, quantity: 1 }
     },
     {
-      name: strings.Butter,
+      name: "Butter",
       itemId: KnownItemIds.JustRegularButter,
       rarity: Rarity.Uncommon,
       cost: {
@@ -64,7 +64,7 @@ export function getItems(): Item[] {
       }
     },
     {
-      name: strings.WhoKnowWhat,
+      name: "WhoKnowWhat",
       itemId: KnownItemIds.BagOfWhoKnowsWhat,
       rarity: Rarity.Uncommon,
       cost: {
@@ -73,7 +73,7 @@ export function getItems(): Item[] {
       }
     },
     {
-      name: strings.GhostFood,
+      name: "GhostFood",
       itemId: KnownItemIds.GhostFood,
       rarity: Rarity.Rare,
       cost: {
@@ -82,7 +82,7 @@ export function getItems(): Item[] {
       }
     },
     {
-      name: strings.Stone,
+      name: "Stone",
       itemId: KnownItemIds.BeckonersRosettaStone,
       rarity: Rarity.Epic,
       secret: true,
@@ -95,13 +95,13 @@ export function getItems(): Item[] {
       }
     },
     {
-      name: strings.Vegetable,
+      name: "Vegetable",
       itemId: KnownItemIds.SweetSeaVegetable,
       rarity: Rarity.Normal,
       cost: { type: CostType.Gold, quantity: 1 }
     },
     {
-      name: strings.FishFace,
+      name: "FishFace",
       itemId: KnownItemIds.JarOfFishFaces,
       rarity: Rarity.Uncommon,
       cost: {
@@ -110,7 +110,7 @@ export function getItems(): Item[] {
       }
     },
     {
-      name: strings.Sock,
+      name: "Sock",
       itemId: KnownItemIds.DirtyMurlocSock,
       rarity: Rarity.Uncommon,
       cost: {
@@ -119,7 +119,7 @@ export function getItems(): Item[] {
       }
     },
     {
-      name: strings.Lunch,
+      name: "Lunch",
       itemId: KnownItemIds.HealthyMurlocLunch,
       rarity: Rarity.Rare,
       cost: {
@@ -128,7 +128,7 @@ export function getItems(): Item[] {
       }
     },
     {
-      name: strings.Finger,
+      name: "Finger",
       itemId: KnownItemIds.CultistPinkyFinger,
       rarity: Rarity.Epic,
       secret: true,
@@ -141,13 +141,13 @@ export function getItems(): Item[] {
       }
     },
     {
-      name: strings.Fish,
+      name: "Fish",
       itemId: KnownItemIds.FlatulentFish,
       rarity: Rarity.Normal,
       cost: { type: CostType.Gold, quantity: 1 }
     },
     {
-      name: strings.Horn,
+      name: "Horn",
       itemId: KnownItemIds.CuriousMurlocHorn,
       rarity: Rarity.Uncommon,
       cost: {
@@ -156,7 +156,7 @@ export function getItems(): Item[] {
       }
     },
     {
-      name: strings.Snail,
+      name: "Snail",
       itemId: KnownItemIds.ExtraSlimySnail,
       rarity: Rarity.Rare,
       cost: {
@@ -165,7 +165,7 @@ export function getItems(): Item[] {
       }
     },
     {
-      name: strings.FootDust,
+      name: "FootDust",
       itemId: KnownItemIds.SeaGiantFootDust,
       rarity: Rarity.Rare,
       cost: {
@@ -179,7 +179,7 @@ export function getItems(): Item[] {
       }
     },
     {
-      name: strings.Idol,
+      name: "Idol",
       itemId: KnownItemIds.OverwhelminglyAlluringIdol,
       rarity: Rarity.Epic,
       secret: true,
@@ -192,14 +192,14 @@ export function getItems(): Item[] {
       }
     },
     {
-      name: strings.Eyeball,
+      name: "Eyeball",
       itemId: KnownItemIds.SlimyNagaEyeball,
       rarity: Rarity.Normal,
       cost: { type: CostType.Gold, quantity: 1 }
     },
   
     {
-      name: strings.Sculpture,
+      name: "Sculpture",
       itemId: KnownItemIds.DisintegratingSandSculpture,
       rarity: Rarity.Uncommon,
       cost: {
@@ -213,7 +213,7 @@ export function getItems(): Item[] {
       }
     },
     {
-      name: strings.Rock,
+      name: "Rock",
       itemId: KnownItemIds.ParticularlyDenseRock,
       rarity: Rarity.Rare,
       cost: {
@@ -231,7 +231,7 @@ export function getItems(): Item[] {
       }
     },
     {
-      name: strings.Gloop,
+      name: "Gloop",
       itemId: KnownItemIds.SmellyPileOfGloop,
       rarity: Rarity.Rare,
       cost: {
@@ -240,7 +240,7 @@ export function getItems(): Item[] {
       }
     },
     {
-      name: strings.BloodStone,
+      name: "BloodStone",
       itemId: KnownItemIds.PulsatingBloodStone,
       rarity: Rarity.Epic,
       secret: true,
@@ -253,7 +253,7 @@ export function getItems(): Item[] {
       }
     },
     {
-      name: strings.Crab,
+      name: "Crab",
       itemId: KnownItemIds.UnusuallyWiseHermitCrab,
       rarity: Rarity.Epic,
       mrrl: true,
@@ -267,7 +267,7 @@ export function getItems(): Item[] {
       }
     },
     {
-      name: strings.Tidestallion,
+      name: "Tidestallion",
       itemId: KnownItemIds.CrimsonTidestallion,
       rarity: Rarity.Epic,
       mrrl: true,
@@ -282,7 +282,7 @@ export function getItems(): Item[] {
       }
     },
     {
-      name: strings.Bundle,
+      name: "Bundle",
       itemId: KnownItemIds.CuriouslyWarmKelpBundle,
       rarity: Rarity.Epic,
       mrrl: true,
@@ -296,7 +296,7 @@ export function getItems(): Item[] {
       }
     },
     {
-      name: strings.Bracelet,
+      name: "Bracelet",
       itemId: KnownItemIds.GrimyManapearlBracelet,
       rarity: Rarity.Epic,
       mrrl: true,
@@ -310,7 +310,7 @@ export function getItems(): Item[] {
       }
     },
     {
-      name: strings.Crate,
+      name: "Crate",
       itemId: KnownItemIds.PilferedArmorCrate,
       rarity: Rarity.Epic,
       mrrl: true,
@@ -325,7 +325,7 @@ export function getItems(): Item[] {
       }
     },
     {
-      name: strings.Taco,
+      name: "Taco",
       itemId: KnownItemIds.HungryHeraldsTentacleTaco,
       rarity: Rarity.Epic,
       secret: true,
@@ -335,7 +335,7 @@ export function getItems(): Item[] {
       }
     },
     {
-      name: strings.PearlIdol,
+      name: "PearlIdol",
       itemId: KnownItemIds.UnspeakablePearlIdol,
       rarity: Rarity.Epic,
       mrrl: true,
@@ -350,7 +350,7 @@ export function getItems(): Item[] {
       }
     },
     {
-      name: strings.SeaStones,
+      name: "SeaStones",
       itemId: KnownItemIds.FaintlyHummingSeaStones,
       rarity: Rarity.Epic,
       mrrl: true,
@@ -364,7 +364,7 @@ export function getItems(): Item[] {
       }
     },
     {
-      name: strings.ToolBox,
+      name: "ToolBox",
       itemId: KnownItemIds.WaterloggedToolbox,
       rarity: Rarity.Epic,
       mrrl: true,
@@ -379,7 +379,7 @@ export function getItems(): Item[] {
       }
     },
     {
-      name: strings.Lockbox,
+      name: "Lockbox",
       itemId: KnownItemIds.SeverelyRustedLockbox,
       rarity: Rarity.Epic,
       mrrl: true,
@@ -393,7 +393,7 @@ export function getItems(): Item[] {
       }
     },
     {
-      name: strings.Coral,
+      name: "Coral",
       itemId: KnownItemIds.StrangeCoralCluster,
       rarity: Rarity.Epic,
       mrrl: true,
